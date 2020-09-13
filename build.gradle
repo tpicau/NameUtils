@@ -1,0 +1,45 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.6.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            pom {
+                name = 'NameUtils'
+                description = 'A simple static utility class that uses regex rules to normalise proper nouns'
+                url = 'https://github.com/tpicau/NameUtils'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/tpicau/NameUtils/blob/master/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'tpicau'
+                        name = 'Tim Coates'
+                        email = 'tim@tpic.com.au'
+                    }
+                }
+            }
+        }
+    }
+}
